@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\User;
+use App\Models\Equipe;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -52,7 +53,7 @@ Route::post('/logar', function (Request $request) {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard')->middleware('auth');
-
+                 
 // Rotas de teste
 Route::get('/teste', function () {
     return 'O código foi testado';
@@ -77,7 +78,33 @@ Route::get('/subtração/{num1}/{num2}', function ($num1, $num2) {
 Route::get('/multiplicação/{num1}/{num2}', function ($num1, $num2) {
     return 'a multiplicação é: '.$num1 * $num2;
 });
-
 Route::get('/cadastra-equipe', function () {
     return view('cadastra-equipe');
-})->name('cadastra-equipe');
+})->name('cadastra-equipe')->middleware('auth');
+
+Route::post('/logout', function (Request $request) {
+    Auth::logout();
+        $request->session()->regenerate();
+        return redirect('/');
+    
+
+    
+})->name('logout');
+
+Route::post('/salva-equipe', function (Request $request) {
+   //dd($request);
+ $equipe = new Equipe();
+ $equipe->nome = $request->nome;
+ $equipe->email = $request->email;
+ $equipe->formacao = $request->formacao;
+ $equipe->experiencia = $request->experiencia;
+ $equipe->save();
+
+ return "Equipe salva com sucesso!!";
+
+})->name('salva-equipe')->middleware('auth');
+
+Route::get('/lista-equipe', function () {
+    $equipe = Equipe::all();
+    return view('lista-equipe', compact('equipe'));
+})->name('lista-equipe');

@@ -1,4 +1,16 @@
-@vite(['resources/css/app.css', 'resources/js/app.js'])
+[10:02, 6/5/2025] Fabio Luiz: @vite(['resources/css/app.css', 'resources/js/app.js'])
+<x-topo></x-topo>
+
+<section class="bg-white dark:bg-gray-900">
+  <div class="py-8 px-4 mx-auto max-w-2xl lg:py-16">
+      <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Cadastro de professor na equipe</h2>
+      <form action="{{route('salva-equipe')}}" method="POST">
+      @csrf
+          <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
+              <div class="sm:col-span-2">
+                  <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nome</label>
+                  <input type="text" name="nome" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p…
+[10:10, 6/5/2025] Fabio Luiz: @vite(['resources/css/app.css', 'resources/js/app.js'])
 <x-topo></x-topo>
 <section class="bg-white dark:bg-gray-900">
   <div class="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
